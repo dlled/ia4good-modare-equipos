@@ -108,7 +108,7 @@ def asignaciones_confirmadas():
 # Desajustes históricos SIMULADOS (provincia -> planta). Solo se aplican si difieren de la planta más cercana.
 DESAJUSTES = {"Málaga": "PL-VAL", "Granada": "PL-VAL", "Murcia": "PL-MAD", "Toledo": "PL-VAL", "Alicante": "PL-MAD",
               "Burgos": "PL-MAD", "A Coruña": "PL-BIO", "Pontevedra": "PL-BIO", "Zaragoza": "PL-BIO", "Badajoz": "PL-VAL"}
-# Muestra recomendada: plantas Madrid y Valencia y su zona, con Andalucía (caso Sevilla/Jerez/Cádiz ← Barcelona).
+# Muestra recomendada: plantas Madrid y Valencia y su zona, con Andalucía.
 CCAA_MUESTRA = {"Comunidad de Madrid", "Castilla-La Mancha", "Comunitat Valenciana", "Región de Murcia", "Andalucía", "Extremadura"}
 MAX_MUESTRA = 60
 
