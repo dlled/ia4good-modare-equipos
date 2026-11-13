@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brief · Reto Moda re-</title>
+<style>
+body{margin:0;background:#f6f6f2;color:#1b231e;font:16px/1.6 -apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:52rem;margin:0 auto;padding:32px 16px 64px}
+h1,h2,h3{line-height:1.2} h1{font-size:1.9rem} h2{margin-top:2rem;font-size:1.35rem;color:#2f6b4f}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.93rem;background:#fff}
+th,td{border:1px solid #d8d8cf;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eceee6}
+code{background:#eceee6;padding:1px 4px;border-radius:4px;font-size:.9em}
+.tw{overflow-x:auto}
+@media print{body{background:#fff} main{padding:0}}
+</style></head><body><main>
+<h1>Brief de arranque · Reto Moda re- · Equipos Azul y Amarillo</h1>
+<p><strong>IA 4 Good Lab, Fundación Ingenieros ICAI</strong> · sábado 14 y domingo 15 de noviembre de 2026 · Mentores: Dani Lledó y David Soler</p>
+<h2>El reto en tres líneas</h2>
+<p>Moda re- (Cáritas) clasifica ropa usada en sus plantas y la vende en unas 190 tiendas de toda España. Hoy cada tienda recibe de una planta asignada por motivos históricos, y cada empresa de inserción contrata su propio transporte, sin coordinación. Hay tiendas que reciben desde plantas muy lejanas, cada una por su lado.</p>
+<p><strong>Pregunta:</strong> ¿cómo abastecer bien las tiendas con menos kilómetros, menos coste y mejor uso de la capacidad de transporte contratada?</p>
+<h2>Qué tenéis que entregar el domingo</h2>
+<p>Un <strong>prototipo de apoyo a la planificación</strong> que cargue los datos, deje definir las hipótesis y proponga un plan para una semana con:</p>
+<ol>
+<li>la asignación planta → tienda;</li>
+<li>la segmentación de las tiendas y su nivel de suministro;</li>
+<li>las rutas, con la secuencia de visita;</li>
+<li>el tipo, la capacidad y el número de vehículos a contratar;</li>
+<li>las rutas sobre un mapa;</li>
+<li>la comparación de escenarios frente a la red actual: km, tiempo, ocupación, coste, emisiones y nivel de servicio.</li>
+</ol>
+<p><strong>Nivel de servicio</strong> (definición <strong>sintética</strong>, pendiente de que la valide Moda re-): el porcentaje de la necesidad semanal en kg de cada tienda que se entrega dentro de su ventana de recepción y con la frecuencia objetivo de su segmento, por tienda y como media de la red ponderada por kg.</p>
+<p>Lo que más se valorará, según la ficha del reto: que <strong>explique sus supuestos</strong>, que <strong>se puedan cambiar con facilidad</strong> y que <strong>distinga lo calculado con datos reales de lo calculado con datos estimados</strong>.</p>
+<h2>El dataset de arranque</h2>
+<p>Lo reciben igual los dos equipos. Son CSV en UTF-8, con distancias en km, tiempos en minutos, pesos en kg y dinero en euros sin IVA.</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Qué trae</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plantas.csv</code></td>
+<td>Plantas de origen; las aún no abiertas (Asturias, Santiago) aparecen marcadas como inactivas</td>
+</tr>
+<tr>
+<td><code>tiendas.csv</code></td>
+<td>Toda la red peninsular: ubicación, superficie, ventas, planta actual, ventana de recepción y vehículo máximo que admite el acceso. Una columna marca la muestra recomendada</td>
+</tr>
+<tr>
+<td><code>vehiculos.csv</code></td>
+<td>Tipos de vehículo: capacidad en kg, m³ y palés, velocidad y jornada</td>
+</tr>
+<tr>
+<td><code>tarifas.csv</code></td>
+<td>Tarifas por operador y vehículo: fijo por día, por km y por hora, y unidades disponibles</td>
+</tr>
+<tr>
+<td><code>emisiones.csv</code></td>
+<td>kg CO₂e/km en vacío y lleno; para cargas intermedias se interpola</td>
+</tr>
+<tr>
+<td><code>distancias.csv</code></td>
+<td>Distancias y tiempos por carretera entre todos los puntos (estimados). Para camión, usad <code>duracion_camion_min</code>, no la duración de turismo</td>
+</tr>
+<tr>
+<td><code>parametros.csv</code></td>
+<td>Fuente única de reglas y supuestos editables: precio medio por kg, kg por palé, densidad de la ropa (kg/m³), umbrales de tamaño, frecuencias por segmento, ventana por defecto, conducción máxima, rutas de varios días y pernocta, nivel de servicio objetivo…</td>
+</tr>
+</tbody>
+</table></div>
+<p>El documento del esquema del dataset (<code>ESQUEMA.md</code>) describe cada columna. Un pequeño script en Python (<code>scripts/datos.py</code>) añade tiendas nuevas con sus distancias, regenera los valores sintéticos y valida el dataset.</p>
+<p><strong>Cada dato lleva una etiqueta</strong>, y vuestra herramienta debe conservarla y enseñarla:</p>
+<ul>
+<li><strong>REAL:</strong> viene de Moda re- o de su web pública. Lleva fuente y fecha.</li>
+<li><strong>ESTIMADO:</strong> valor de mercado o calculado con un método conocido. Lleva la fuente.</li>
+<li><strong>SINTÉTICO:</strong> inventado para poder trabajar. Cambiadlo con libertad.</li>
+</ul>
+<p><strong>Una pista:</strong> el sur de España queda a más de una jornada de conducción de cualquier planta. Vuestro modelo tendrá que manejar rutas de varios días. Y las 7 tiendas de Baleares están marcadas en el dataset como fuera del alcance de las rutas por carretera.</p>
+<p><strong>Lo que no trae, a propósito:</strong> la demanda en kg de cada tienda, la frecuencia de entrega y la segmentación. Eso lo construís vosotros con reglas a partir del tamaño y las ventas.</p>
+<h2>Cómo os proponemos empezar</h2>
+<ol>
+<li><strong>Primera hora:</strong> leed la ficha, abrid el dataset y elegid el alcance. Con la muestra y una o dos plantas basta.</li>
+<li><strong>Fijad los supuestos y etiquetadlos.</strong> Si una duda dura más de 15 minutos, fijad un valor, marcadlo como SINTÉTICO, hacedlo editable y seguid.</li>
+<li><strong>Primero el flujo completo, aunque sea tosco:</strong> datos → necesidad por tienda → asignación → rutas → flota → indicadores. La interfaz y el mapa, después.</li>
+<li><strong>Calculad la red actual con el mismo motor y los mismos supuestos</strong> que las alternativas. Es vuestro escenario de referencia.</li>
+<li><strong>El domingo, mejorad y preparad la demo.</strong> Congelad funcionalidades a las 13:30, antes de comer, y ensayad entre las 14:30 y las 15:30.</li>
+</ol>
+<h2>Reglas del juego</h2>
+<ul>
+<li><strong>El núcleo es optimización y analítica</strong>, no IA generativa: segmentación, asignación, rutas de vehículos (VRP), selección de flota y escenarios. Usad la IA generativa para construir más rápido y, si queréis, para limpiar datos desordenados o explicar un escenario a partir de los números de vuestro motor. Un chatbot que decide las rutas no resuelve el reto.</li>
+<li><strong>Nada de predecir la demanda con aprendizaje automático:</strong> no hay histórico.</li>
+<li><strong>Nada de «ahorramos un X % frente a hoy»:</strong> es una comparación prospectiva con supuestos comunes, no un ahorro medido.</li>
+<li><strong>Stack sugerido:</strong> app web en TypeScript + Vite. Si domináis Python, poned el motor en Python (por ejemplo, con OR-Tools) detrás de una API pequeña. Streamlit no. Nada que dependa de una API de pago para funcionar.</li>
+<li><strong>Pensad en quien lo use después:</strong> un planificador de Moda re- y voluntarios que lo mantengan. Un README con un único comando de arranque y la posibilidad de añadir una tienda nueva (por ejemplo, en Albacete).</li>
+</ul>
+<h2>Calendario</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Cuándo</th>
+<th>Qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sáb 09:00-10:15</td>
+<td>Recepción, bienvenida, presentación de los retos por las ONG y organización de los equipos</td>
+</tr>
+<tr>
+<td>Sáb 10:15-12:00</td>
+<td>Análisis del reto e ideación</td>
+</tr>
+<tr>
+<td><strong>Sáb 12:00-12:30</strong></td>
+<td><strong>Primera validación de propuestas con las ONG:</strong> traed una propuesta que se pueda contar en 3 minutos</td>
+</tr>
+<tr>
+<td>Sáb 12:30-14:00</td>
+<td>Desarrollo</td>
+</tr>
+<tr>
+<td>Sáb 14:00-15:15</td>
+<td>Comida y presentación de la Fundación</td>
+</tr>
+<tr>
+<td>Sáb 15:15-18:30</td>
+<td>Desarrollo con los mentores</td>
+</tr>
+<tr>
+<td><strong>Sáb 18:30-19:00</strong></td>
+<td><strong>Revisión de avances con mentores y ONG:</strong> traed un flujo de punta a punta</td>
+</tr>
+<tr>
+<td>Dom 09:00-11:30</td>
+<td>Apertura y desarrollo</td>
+</tr>
+<tr>
+<td><strong>Dom 11:30-12:00</strong></td>
+<td><strong>Segunda validación con las ONG:</strong> la red actual frente a vuestra propuesta</td>
+</tr>
+<tr>
+<td>Dom 12:00-13:30</td>
+<td>Ajustes y preparación de la presentación. <strong>Congelad funcionalidades a las 13:30</strong>, antes de comer</td>
+</tr>
+<tr>
+<td>Dom 14:30-15:30</td>
+<td>Ensayo de la presentación y entrega de la documentación</td>
+</tr>
+<tr>
+<td>Dom 15:30-16:00</td>
+<td>Preparación de la demo y cierre de entregas</td>
+</tr>
+<tr>
+<td><strong>Dom 16:00-17:30</strong></td>
+<td><strong>Pitch y demo:</strong> unos 15 minutos por equipo</td>
+</tr>
+<tr>
+<td>Dom 17:30-19:00</td>
+<td>Deliberación del jurado, premios y clausura</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Cómo se evalúa</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Criterio</th>
+<th style="text-align: center;">Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supuestos explícitos y separación de lo real y lo estimado</td>
+<td style="text-align: center;">20 %</td>
+</tr>
+<tr>
+<td>Hipótesis modificables y escenarios</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td>Núcleo de optimización y analítica</td>
+<td style="text-align: center;">25 %</td>
+</tr>
+<tr>
+<td>Comparación de escenarios con los 6 indicadores</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td>Utilidad y continuidad para Moda re-</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td>Demo y comunicación</td>
+<td style="text-align: center;">10 %</td>
+</tr>
+</tbody>
+</table></div>
+<p>La rúbrica completa se comparte el sábado a las 10:15. Si os bloqueáis, llamadnos: estamos para eso.</p>
+</main></body></html>
