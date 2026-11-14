@@ -95,4 +95,4 @@ El documento del esquema del dataset (`ESQUEMA.md`) describe cada columna. Un pe
 | Utilidad y continuidad para Moda re- | 15 % |
 | Demo y comunicación | 10 % |
 
-La rúbrica completa se comparte el sábado a las 10:15. Si os bloqueáis, llamadnos: estamos para eso.
+Cómo se evalúa: [`criterios-evaluacion.md`](criterios-evaluacion.md). Si os bloqueáis, llamadnos: estamos para eso.

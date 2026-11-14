@@ -9,6 +9,7 @@ Reto: **«Optimización de la red de distribución entre plantas y tiendas»**, 
 | Archivo | Qué es |
 |---|---|
 | [`brief-equipos.md`](brief-equipos.md) · [HTML](brief-equipos.html) | Una página de arranque: el reto, los entregables, el dataset, cómo empezar, las reglas y el calendario |
+| [`criterios-evaluacion.md`](criterios-evaluacion.md) · [HTML](criterios-evaluacion.html) | Cómo se evalúa: los 6 criterios, su peso y qué se valora en cada uno |
 | [`data/`](data/) | Dataset de arranque: 7 CSV, su esquema ([`ESQUEMA.md`](data/ESQUEMA.md)), un [README](data/README.md) y `scripts/datos.py` |
 
 La ficha oficial del reto la tenéis por la Fundación; no se incluye aquí.

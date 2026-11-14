@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cómo se evalúa · Reto Moda re-</title>
+<style>
+body{margin:0;background:#f6f6f2;color:#1b231e;font:16px/1.6 -apple-system,"Segoe UI",Arial,sans-serif}
+main{max-width:52rem;margin:0 auto;padding:32px 16px 64px}
+h1,h2,h3{line-height:1.2} h1{font-size:1.9rem} h2{margin-top:2rem;font-size:1.35rem;color:#2f6b4f}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.93rem;background:#fff}
+th,td{border:1px solid #d8d8cf;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eceee6}
+code{background:#eceee6;padding:1px 4px;border-radius:4px;font-size:.9em}
+.tw{overflow-x:auto}
+@media print{body{background:#fff} main{padding:0}}
+</style></head><body><main>
+<h1>Cómo se evalúa · Reto Moda re-</h1>
+<p><strong>Reto:</strong> «Optimización de la red de distribución entre plantas y tiendas» (Moda re-, IA 4 Good Lab, Fundación Ingenieros ICAI) · <strong>Pitch y demo:</strong> domingo 15/11/2026, de 16:00 a 17:30 · <strong>Jurado:</strong> los mentores del hackathon y, si la Fundación lo confirma, alguna persona más.</p>
+<p>El jurado valora seis criterios, cada uno con su peso. Están sacados de lo que pide la ficha oficial del reto y, sobre todo, de lo que la ficha dice que «se valorará especialmente»: que el prototipo <strong>explique sus supuestos</strong>, que <strong>permita modificarlos con facilidad</strong> y que <strong>diferencie lo calculado con datos reales de lo obtenido con parámetros estimados</strong>.</p>
+<p>En la demo pesa más lo que se ve funcionar en directo que lo que se cuenta en las diapositivas. El jurado puede pediros una prueba sobre la herramienta durante la demo.</p>
+<h2>Resumen</h2>
+<div class="tw"><table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th>Criterio</th>
+<th style="text-align: center;">Peso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>Supuestos explícitos y separación de lo real y lo estimado</td>
+<td style="text-align: center;">20 %</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>Hipótesis modificables y escenarios</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>Núcleo de optimización y analítica</td>
+<td style="text-align: center;">25 %</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>Comparación de escenarios con los 6 indicadores</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>Utilidad y continuidad para Moda re-</td>
+<td style="text-align: center;">15 %</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>Demo y comunicación</td>
+<td style="text-align: center;">10 %</td>
+</tr>
+</tbody>
+</table></div>
+<h2>1. Supuestos explícitos y separación de lo real y lo estimado · 20 %</h2>
+<p>Muchos datos del reto no existen todavía y hay que suponerlos. Eso está bien siempre que se vea. Se valora que:</p>
+<ul>
+<li>cada dato y cada parámetro lleve su etiqueta (<strong>REAL</strong>, <strong>ESTIMADO</strong> o <strong>SINTÉTICO</strong>) y su fuente, y que la herramienta la muestre, no solo las diapositivas;</li>
+<li>los resultados digan si dependen de datos estimados o sintéticos;</li>
+<li>sepáis explicar qué resultado cambiaría si un supuesto fuera falso y qué dato real le pediríais a Moda re- para cerrarlo.</li>
+</ul>
+<h2>2. Hipótesis modificables y escenarios · 15 %</h2>
+<p>La herramienta tiene que servir para preguntar «¿y si…?». Se valora que:</p>
+<ul>
+<li>los parámetros clave (frecuencias de entrega, flota, tarifas, asignación fija o libre, plantas activas) se cambien desde la interfaz y se recalcule, sin tocar código;</li>
+<li>se puedan guardar varios escenarios con nombre;</li>
+<li>se puedan añadir tiendas o plantas nuevas (por ejemplo, una tienda en Albacete o la futura planta de Asturias);</li>
+<li>una persona sin perfil técnico, como un planificador de Moda re-, pueda crear un escenario nuevo en un par de minutos.</li>
+</ul>
+<h2>3. Núcleo de optimización y analítica · 25 %</h2>
+<p>Es el criterio que más pesa: el reto es de analítica, optimización y simulación, no de IA generativa. Se valora que:</p>
+<ul>
+<li>haya optimización de verdad en las piezas del problema: segmentación de tiendas, asignación de cada tienda a una planta, rutas de reparto con capacidad (VRP) y elección de vehículos;</li>
+<li>se respeten las restricciones reales: capacidad de los vehículos y de las plantas, días y horarios de recepción, jornada del conductor;</li>
+<li>las piezas estén conectadas: la segmentación determina la demanda, la demanda las rutas y las rutas la flota;</li>
+<li>sepáis justificar vuestras decisiones de modelado (por qué ese método o ese solver, cómo medís las distancias, qué unidad limita la carga) y comprobéis que los resultados tienen sentido (por ejemplo, que ningún camión va por encima del 100 %).</li>
+</ul>
+<p>Si un modelo de lenguaje es quien decide la asignación, las rutas o la flota, este criterio queda muy limitado. La IA generativa sí suma si se usa para limpiar datos desordenados o para explicar un escenario a partir de los números que calcula vuestro motor.</p>
+<h2>4. Comparación de escenarios con los 6 indicadores · 15 %</h2>
+<p>La ficha pide comparar escenarios con <strong>seis indicadores</strong>, siempre frente a la <strong>red actual</strong> y con los <strong>mismos supuestos</strong> en todos:</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Qué mide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kilómetros</td>
+<td>Distancia total que recorren las rutas</td>
+</tr>
+<tr>
+<td>Tiempo</td>
+<td>Horas de conducción y de servicio (carga, descargas, pausas y noches fuera)</td>
+</tr>
+<tr>
+<td>Ocupación</td>
+<td>Lo cargado que va cada vehículo frente a su capacidad (en kg, m³ o palés, la que limite)</td>
+</tr>
+<tr>
+<td>Coste estimado</td>
+<td>Coste del transporte con tarifas de mercado</td>
+</tr>
+<tr>
+<td>Emisiones</td>
+<td>CO₂ equivalente según el vehículo, los km y la carga</td>
+</tr>
+<tr>
+<td>Nivel de servicio</td>
+<td>Parte de la necesidad de cada tienda que se entrega a tiempo y con la frecuencia prevista</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se valora que estén los seis, que se vea el efecto de cambiar la asignación, la frecuencia o la flota, y que expliquéis los compromisos entre indicadores (por ejemplo, más frecuencia da más servicio pero más kilómetros).</p>
+<p>Ojo: como no hay datos históricos, las diferencias son una <strong>comparación con supuestos</strong>, no un ahorro medido. Decir «ahorramos un X % frente a hoy» como si fuera un dato real penaliza.</p>
+<h2>5. Utilidad y continuidad para Moda re- · 15 %</h2>
+<p>La herramienta tiene que poder usarse y mantenerse después del hackathon. Se valora que:</p>
+<ul>
+<li>arranque con un solo comando o una URL y tenga un README claro;</li>
+<li>acepte datos en un formato sencillo (CSV o Excel);</li>
+<li>deje claro qué datos debería empezar a recoger Moda re- y cómo cargarlos;</li>
+<li>propongáis un piloto concreto (una zona, un periodo y los datos necesarios);</li>
+<li>el código sea legible y con pocas dependencias, para que lo pueda mantener un voluntario.</li>
+</ul>
+<h2>6. Demo y comunicación · 10 %</h2>
+<p>Se valora que:</p>
+<ul>
+<li>la demo sea en directo, funcione y se ajuste al tiempo;</li>
+<li>cuente una historia: cómo es hoy, qué proponéis y qué diferencia hay;</li>
+<li>respondáis con soltura a las preguntas;</li>
+<li>alguien de Moda re- entienda qué podría hacer con la herramienta el lunes.</li>
+</ul>
+<h2>Lo que resta</h2>
+<ul>
+<li>Que un chatbot sea el núcleo que decide.</li>
+<li>Presentar ahorros «frente a hoy» como si fueran medidos.</li>
+<li>Predecir la demanda con aprendizaje automático sobre datos inventados: no hay histórico.</li>
+</ul>
+</main></body></html>
