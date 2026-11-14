@@ -62,7 +62,7 @@ El documento del esquema del dataset (`ESQUEMA.md`) describe cada columna. Un pe
 - **El núcleo es optimización y analítica**, no IA generativa: segmentación, asignación, rutas de vehículos (VRP), selección de flota y escenarios. Usad la IA generativa para construir más rápido y, si queréis, para limpiar datos desordenados o explicar un escenario a partir de los números de vuestro motor. Un chatbot que decide las rutas no resuelve el reto.
 - **Nada de predecir la demanda con aprendizaje automático:** no hay histórico.
 - **Nada de «ahorramos un X % frente a hoy»:** es una comparación prospectiva con supuestos comunes, no un ahorro medido.
-- **Stack sugerido:** app web en TypeScript + Vite. Si domináis Python, poned el motor en Python (por ejemplo, con OR-Tools) detrás de una API pequeña. Streamlit no. Nada que dependa de una API de pago para funcionar.
+- **Tecnología libre:** usad la que mejor dominéis; no hay ningún lenguaje ni herramienta obligatoria.
 - **Pensad en quien lo use después:** un planificador de Moda re- y voluntarios que lo mantengan. Un README con un único comando de arranque y la posibilidad de añadir una tienda nueva (por ejemplo, en Albacete).
 
 ## Calendario
